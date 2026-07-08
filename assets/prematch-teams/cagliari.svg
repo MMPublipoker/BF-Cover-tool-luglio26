@@ -1,0 +1,24 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cagliari-body" x1="160" y1="100" x2="760" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD870"/>
+      <stop offset="0.45" stop-color="#FFB80C"/>
+      <stop offset="1" stop-color="#632B00"/>
+    </linearGradient>
+    <radialGradient id="cagliari-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(388 372) rotate(90) scale(414 278)">
+      <stop stop-color="#FFB80C" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#FFB80C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="388" cy="372" rx="278" ry="414" fill="url(#cagliari-glow)"/>
+  <path d="M234 100C289 69 372 60 433 84C493 108 554 174 578 240C607 320 617 404 622 469C627 530 693 607 729 700C766 795 772 885 741 944C706 1010 627 1043 553 1038L333 1024C266 1019 210 984 181 927C149 864 150 793 186 708C219 629 285 569 290 510C298 431 283 362 270 285C260 225 197 126 234 100Z" fill="url(#cagliari-body)"/>
+  <path d="M288 205C320 166 383 137 439 139C502 142 558 178 589 229C617 275 621 326 618 364C614 406 592 441 560 456C527 472 486 469 452 455C419 442 392 417 356 393C315 367 258 349 245 307C232 265 258 239 288 205Z" fill="#1A1A1A" fill-opacity="0.84"/>
+  <path d="M359 487C418 481 493 486 547 516C586 538 627 574 646 626C666 679 661 748 622 791C578 840 503 847 442 832C392 819 343 789 306 750C261 703 233 635 251 581C269 527 313 492 359 487Z" fill="#171717" fill-opacity="0.92"/>
+  <path d="M480 460L556 305" stroke="#FFE7A7" stroke-width="40" stroke-linecap="round" stroke-opacity="0.9"/>
+  <path d="M386 482L470 280" stroke="#FFF7DB" stroke-width="18" stroke-linecap="round" stroke-opacity="0.7"/>
+  <circle cx="467" cy="244" r="118" fill="#111111" fill-opacity="0.96"/>
+  <circle cx="467" cy="244" r="94" fill="#2D2D2D"/>
+  <path d="M203 951C246 911 309 883 372 874C462 861 552 869 632 915C704 956 739 1020 739 1074H184C184 1029 190 984 203 951Z" fill="#111111" fill-opacity="0.94"/>
+  <rect x="536" y="828" width="174" height="174" rx="42" fill="#0C0C0C" fill-opacity="0.86"/>
+  <text x="623" y="938" fill="#FFF2C6" font-size="88" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">CA</text>
+</svg>

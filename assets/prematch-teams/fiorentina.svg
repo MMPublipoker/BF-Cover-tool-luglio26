@@ -1,0 +1,23 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fiorentina-body" x1="127" y1="113" x2="778" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8D6FF"/>
+      <stop offset="0.4" stop-color="#A84CFF"/>
+      <stop offset="1" stop-color="#33095E"/>
+    </linearGradient>
+    <radialGradient id="fiorentina-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(482 402) rotate(90) scale(410 270)">
+      <stop stop-color="#A84CFF" stop-opacity="0.76"/>
+      <stop offset="1" stop-color="#A84CFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="482" cy="402" rx="270" ry="410" fill="url(#fiorentina-glow)"/>
+  <path d="M239 132C284 92 372 69 448 83C518 96 591 150 629 209C677 284 697 387 706 477C715 566 748 643 751 734C755 825 730 915 673 975C621 1031 543 1051 461 1036L286 1005C222 993 171 945 153 881C130 805 152 724 192 658C234 591 299 543 309 486C322 410 305 344 287 272C271 210 200 167 239 132Z" fill="url(#fiorentina-body)"/>
+  <circle cx="429" cy="230" r="116" fill="#161616" fill-opacity="0.96"/>
+  <circle cx="429" cy="230" r="93" fill="#2C2C2C"/>
+  <path d="M343 485C402 471 488 470 555 500C618 527 678 584 704 660C727 729 706 797 651 840C595 884 514 890 443 875C359 857 278 812 232 735C190 664 191 571 246 525C277 499 312 492 343 485Z" fill="#141414" fill-opacity="0.92"/>
+  <path d="M324 530C381 534 428 614 458 671C491 611 566 529 628 506" stroke="#FCE7FF" stroke-width="28" stroke-linecap="round" stroke-opacity="0.86"/>
+  <path d="M474 478L607 324" stroke="#FFD3FF" stroke-width="36" stroke-linecap="round" stroke-opacity="0.84"/>
+  <path d="M221 930C265 899 321 875 381 866C472 853 560 877 633 919C697 955 734 1006 734 1074H174C174 1027 187 986 221 930Z" fill="#111111" fill-opacity="0.94"/>
+  <rect x="178" y="844" width="176" height="176" rx="44" fill="#0F0B17" fill-opacity="0.9"/>
+  <text x="266" y="955" fill="#FCE7FF" font-size="88" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">FI</text>
+</svg>

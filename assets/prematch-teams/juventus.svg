@@ -1,0 +1,24 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="juve-body" x1="184" y1="108" x2="687" y2="986" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F6F6"/>
+      <stop offset="0.5" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#1B1B1B"/>
+    </linearGradient>
+    <radialGradient id="juve-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(395 392) rotate(90) scale(400 260)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="395" cy="392" rx="260" ry="400" fill="url(#juve-glow)"/>
+  <path d="M286 112C338 83 405 76 467 96C526 116 581 167 615 225C646 278 663 343 669 412C675 485 676 561 701 640C731 735 770 820 741 903C709 996 617 1052 523 1040L342 1018C263 1009 204 966 175 904C145 840 152 769 180 705C212 631 273 572 289 512C305 450 300 389 291 326C281 258 231 143 286 112Z" fill="url(#juve-body)"/>
+  <circle cx="450" cy="237" r="114" fill="#0F0F0F" fill-opacity="0.96"/>
+  <circle cx="450" cy="237" r="89" fill="#2C2C2C"/>
+  <path d="M335 496C391 481 484 483 547 513C609 542 666 600 690 675C712 742 691 812 639 851C584 892 503 893 434 874C363 854 292 812 247 744C202 676 198 581 250 536C275 514 307 504 335 496Z" fill="#111111" fill-opacity="0.93"/>
+  <path d="M311 462L379 828" stroke="#EBEBEB" stroke-width="55" stroke-linecap="round" stroke-opacity="0.94"/>
+  <path d="M459 435L526 809" stroke="#F5F5F5" stroke-width="28" stroke-linecap="round" stroke-opacity="0.9"/>
+  <path d="M545 472L613 778" stroke="#242424" stroke-width="70" stroke-linecap="round" stroke-opacity="0.86"/>
+  <path d="M214 936C260 899 327 875 391 868C482 859 572 878 648 922C719 963 746 1013 746 1074H181C181 1028 194 983 214 936Z" fill="#111111" fill-opacity="0.95"/>
+  <rect x="550" y="840" width="170" height="170" rx="40" fill="#090909" fill-opacity="0.88"/>
+  <text x="635" y="950" fill="#F5F5F5" font-size="88" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">JU</text>
+</svg>

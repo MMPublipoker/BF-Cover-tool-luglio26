@@ -1,0 +1,23 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="roma-body" x1="160" y1="92" x2="764" y2="995" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD1A7"/>
+      <stop offset="0.42" stop-color="#C65B00"/>
+      <stop offset="1" stop-color="#4A1900"/>
+    </linearGradient>
+    <radialGradient id="roma-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 404) rotate(90) scale(390 260)">
+      <stop stop-color="#FF7A1A" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#FF7A1A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="430" cy="404" rx="260" ry="390" fill="url(#roma-glow)"/>
+  <path d="M247 109C291 85 360 74 433 87C500 98 578 142 625 208C675 280 695 371 702 460C708 537 735 618 743 704C750 784 736 872 691 938C640 1011 552 1051 470 1042L301 1021C228 1012 170 972 149 904C125 828 150 748 192 680C237 607 302 557 312 493C325 406 297 321 272 252C254 203 208 131 247 109Z" fill="url(#roma-body)"/>
+  <circle cx="427" cy="236" r="116" fill="#121212" fill-opacity="0.96"/>
+  <circle cx="427" cy="236" r="92" fill="#2A2A2A"/>
+  <path d="M347 492C405 478 490 482 555 512C622 544 687 607 706 684C724 757 699 820 646 859C589 901 506 902 435 883C359 863 283 821 239 751C197 685 197 585 252 539C280 516 314 500 347 492Z" fill="#141414" fill-opacity="0.92"/>
+  <path d="M318 506L586 553" stroke="#FFCD99" stroke-width="30" stroke-linecap="round" stroke-opacity="0.86"/>
+  <path d="M503 463L622 327" stroke="#FFDDBE" stroke-width="42" stroke-linecap="round" stroke-opacity="0.88"/>
+  <path d="M206 938C252 904 318 876 384 866C470 852 562 874 636 919C708 963 738 1009 738 1074H180C180 1028 189 985 206 938Z" fill="#111111" fill-opacity="0.95"/>
+  <rect x="176" y="842" width="174" height="174" rx="42" fill="#140802" fill-opacity="0.9"/>
+  <text x="263" y="952" fill="#FFE7D2" font-size="88" font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">RM</text>
+</svg>
