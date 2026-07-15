@@ -73,6 +73,7 @@ export function getStaticResourceEntries() {
   return [
     ["background:prematch", ASSETS.backgrounds.prematch],
     ["background:editoriale", ASSETS.backgrounds.editoriale],
+    ["editorial-pitch", ASSETS.editorialPitch],
   ];
 }
 
@@ -726,7 +727,34 @@ function drawPitchShape(ctx, x, y, width, height) {
   ctx.strokeRect(x + (width - smallBoxWidth) / 2, y + height - 14 - smallBoxHeight, smallBoxWidth, smallBoxHeight);
 }
 
-function drawEditorialPitch(ctx, state) {
+function getContainLayout(image, box) {
+  if (!image?.width || !image?.height) {
+    return box;
+  }
+
+  const imageRatio = image.width / image.height;
+  const boxRatio = box.width / box.height;
+
+  if (imageRatio > boxRatio) {
+    const height = box.width / imageRatio;
+    return {
+      x: box.x,
+      y: box.y + (box.height - height) / 2,
+      width: box.width,
+      height,
+    };
+  }
+
+  const width = box.height * imageRatio;
+  return {
+    x: box.x + (box.width - width) / 2,
+    y: box.y,
+    width,
+    height: box.height,
+  };
+}
+
+function drawEditorialPitch(ctx, state, image) {
   const baseBox = {
     x: 592,
     y: 94,
@@ -740,6 +768,7 @@ function drawEditorialPitch(ctx, state) {
   };
   box.x = baseBox.x + (baseBox.width - box.width) / 2 + (state.pitchOffsetX ?? 0);
   box.y = baseBox.y + (baseBox.height - box.height) / 2 + (state.pitchOffsetY ?? 0);
+  const pitchLayout = getContainLayout(image, box);
   const formation = PITCH_FORMATION_LAYOUTS[state.pitchFormation] ?? PITCH_FORMATION_LAYOUTS["4-3-3"];
   const playerNames = getPitchPlayerNames(state);
   const blurAmount = ((state.pitchBlur ?? 75) / 100) * 12;
@@ -752,11 +781,15 @@ function drawEditorialPitch(ctx, state) {
   ctx.filter = blurAmount > 0 ? `blur(${blurAmount}px)` : "none";
   ctx.globalAlpha = 0.92;
 
-  drawPitchShape(ctx, box.x, box.y, box.width, box.height);
+  if (image) {
+    ctx.drawImage(image, pitchLayout.x, pitchLayout.y, pitchLayout.width, pitchLayout.height);
+  } else {
+    drawPitchShape(ctx, box.x, box.y, box.width, box.height);
+  }
 
   formation.forEach((position, index) => {
-    const px = box.x + position.x * box.width;
-    const py = box.y + position.y * box.height;
+    const px = pitchLayout.x + position.x * pitchLayout.width;
+    const py = pitchLayout.y + position.y * pitchLayout.height;
 
     if (dotStyle === "ring") {
       ctx.lineWidth = Math.max(2, dotSize * 0.35);
@@ -806,7 +839,7 @@ export function drawEditorialCover(ctx, state, resources) {
 
   if (state.background === "chiamata vuota.jpg") {
     if (state.chiamataVuotaMode === "pitch") {
-      drawEditorialPitch(ctx, state);
+      drawEditorialPitch(ctx, state, resources.get("editorial-pitch"));
     } else if (state.flagAsset) {
       drawEditorialFlag(ctx, state, resources.get(`editorial-flag:${state.flagAsset}`));
     }

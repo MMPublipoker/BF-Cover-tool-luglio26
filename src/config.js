@@ -186,6 +186,7 @@ export const ASSETS = {
     prematch: "./assets/backgrounds/prematch-official.jpg",
     editoriale: "./assets/backgrounds/editoriale-official.jpg",
   },
+  editorialPitch: "./assets/editorial-pitch/pitch.png",
   prematchTeamAssets: Object.fromEntries(
     prematchFlatAssets.map((asset) => [asset.value, asset]),
   ),
