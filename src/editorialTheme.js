@@ -1,11 +1,10 @@
 (() => {
   const THEMES = { black: "Nero", yellow: "Giallo" };
   const EDITORIAL_ASSET_PATH = "/assets/editorial-backgrounds/";
-  const BUNDLE_URL = "./assets/editorial-backgrounds/editorial-yellow.bundle?v=20260820a";
-  const BUNDLE_INDEX = {"allenatore.jpg":{"offset":0,"length":68602},"arbitro fischio.jpg":{"offset":68602,"length":52034},"arbitro var.jpg":{"offset":120636,"length":48334},"basket giocatore bianco 2.jpg":{"offset":168970,"length":54435},"basket giocatore bianco1.jpg":{"offset":223405,"length":59539},"basket giocatore nero1.jpg":{"offset":282944,"length":59332},"basket giocatrice1.jpg":{"offset":342276,"length":54310},"calciatore azione.jpg":{"offset":396586,"length":49336},"calciatore bianco pallone.jpg":{"offset":445922,"length":51279},"calciatore coppa.jpg":{"offset":497201,"length":74742},"calciatore disperato.jpg":{"offset":571943,"length":46263},"calciatore dorato.jpg":{"offset":618206,"length":54354},"calciatrice bianca.jpg":{"offset":672560,"length":45002},"calciatrice nera.jpg":{"offset":717562,"length":62580},"cartellino giallo.jpg":{"offset":780142,"length":31506},"cartellino rosso.jpg":{"offset":811648,"length":63128},"chiamata vuota.jpg":{"offset":874776,"length":9426},"ciclista.jpg":{"offset":884202,"length":69599},"contrasto calcio.jpg":{"offset":953801,"length":55587},"coppa del mondo.jpg":{"offset":1009388,"length":40725},"esultanza calciatore.jpg":{"offset":1050113,"length":54315},"frecce betfair.jpg":{"offset":1104428,"length":15494},"grafico su.jpg":{"offset":1119922,"length":36000},"infortunio calciatore.jpg":{"offset":1155922,"length":39395},"italia nazionale.jpg":{"offset":1195317,"length":60704},"macchina f1.jpg":{"offset":1256021,"length":41874},"multisport.jpg":{"offset":1297895,"length":70229},"pallone+coppa.jpg":{"offset":1368124,"length":63271},"persone generiche.jpg":{"offset":1431395,"length":77600},"persone telefono.jpg":{"offset":1508995,"length":86344},"pilota f1 big.jpg":{"offset":1595339,"length":66306},"pilota f1 small.jpg":{"offset":1661645,"length":55709},"pilota moto.jpg":{"offset":1717354,"length":56690},"scarpe italia.jpg":{"offset":1774044,"length":63072},"scarpe pallone.jpg":{"offset":1837116,"length":64412},"scarpe spagna.jpg":{"offset":1901528,"length":65453},"tennista donna 2.jpg":{"offset":1966981,"length":54084},"tennista donna.jpg":{"offset":2021065,"length":48652},"tennista uomo.jpg":{"offset":2069717,"length":54706},"uomo dubbioso.jpg":{"offset":2124423,"length":58009},"uomo serio.jpg":{"offset":2182432,"length":59459},"uomo telefono.jpg":{"offset":2241891,"length":56717},"var.jpg":{"offset":2298608,"length":54952}};
+  const BUNDLE_INDEX = {"allenatore.jpg":{"bundle":1,"offset":0,"length":68602},"basket giocatore bianco1.jpg":{"bundle":1,"offset":68602,"length":59539},"calciatore bianco pallone.jpg":{"bundle":1,"offset":128141,"length":51279},"calciatrice bianca.jpg":{"bundle":1,"offset":179420,"length":45002},"chiamata vuota.jpg":{"bundle":1,"offset":224422,"length":9426},"esultanza calciatore.jpg":{"bundle":1,"offset":233848,"length":54315},"italia nazionale.jpg":{"bundle":1,"offset":288163,"length":60704},"persone generiche.jpg":{"bundle":1,"offset":348867,"length":77600},"pilota moto.jpg":{"bundle":1,"offset":426467,"length":56690},"tennista donna 2.jpg":{"bundle":1,"offset":483157,"length":54084},"uomo serio.jpg":{"bundle":1,"offset":537241,"length":59459},"arbitro fischio.jpg":{"bundle":2,"offset":0,"length":52034},"basket giocatore nero1.jpg":{"bundle":2,"offset":52034,"length":59332},"calciatore coppa.jpg":{"bundle":2,"offset":111366,"length":74742},"calciatrice nera.jpg":{"bundle":2,"offset":186108,"length":62580},"ciclista.jpg":{"bundle":2,"offset":248688,"length":69599},"frecce betfair.jpg":{"bundle":2,"offset":318287,"length":15494},"macchina f1.jpg":{"bundle":2,"offset":333781,"length":41874},"persone telefono.jpg":{"bundle":2,"offset":375655,"length":86344},"scarpe italia.jpg":{"bundle":2,"offset":461999,"length":63072},"tennista donna.jpg":{"bundle":2,"offset":525071,"length":48652},"uomo telefono.jpg":{"bundle":2,"offset":573723,"length":56717},"arbitro var.jpg":{"bundle":3,"offset":0,"length":48334},"basket giocatrice1.jpg":{"bundle":3,"offset":48334,"length":54310},"calciatore disperato.jpg":{"bundle":3,"offset":102644,"length":46263},"cartellino giallo.jpg":{"bundle":3,"offset":148907,"length":31506},"contrasto calcio.jpg":{"bundle":3,"offset":180413,"length":55587},"grafico su.jpg":{"bundle":3,"offset":236000,"length":36000},"multisport.jpg":{"bundle":3,"offset":272000,"length":70229},"pilota f1 big.jpg":{"bundle":3,"offset":342229,"length":66306},"scarpe pallone.jpg":{"bundle":3,"offset":408535,"length":64412},"tennista uomo.jpg":{"bundle":3,"offset":472947,"length":54706},"var.jpg":{"bundle":3,"offset":527653,"length":54952},"basket giocatore bianco 2.jpg":{"bundle":4,"offset":0,"length":54435},"calciatore azione.jpg":{"bundle":4,"offset":54435,"length":49336},"calciatore dorato.jpg":{"bundle":4,"offset":103771,"length":54354},"cartellino rosso.jpg":{"bundle":4,"offset":158125,"length":63128},"coppa del mondo.jpg":{"bundle":4,"offset":221253,"length":40725},"infortunio calciatore.jpg":{"bundle":4,"offset":261978,"length":39395},"pallone+coppa.jpg":{"bundle":4,"offset":301373,"length":63271},"pilota f1 small.jpg":{"bundle":4,"offset":364644,"length":55709},"scarpe spagna.jpg":{"bundle":4,"offset":420353,"length":65453},"uomo dubbioso.jpg":{"bundle":4,"offset":485806,"length":58009}};
 
   const yellowCache = new Map();
-  let bundlePromise = null;
+  const bundlePromises = new Map();
   let currentTheme = "black";
   let redrawTimer = null;
 
@@ -18,26 +17,27 @@
     }
   }
 
-  function loadBundle() {
-    if (!bundlePromise) {
-      bundlePromise = fetch(BUNDLE_URL).then((response) => {
-        if (!response.ok) throw new Error(`Bundle giallo non disponibile (${response.status})`);
+  function loadBundle(bundleNumber) {
+    if (!bundlePromises.has(bundleNumber)) {
+      const url = `./assets/editorial-backgrounds/editorial-yellow-${bundleNumber}.bundle?v=20260820a`;
+      bundlePromises.set(bundleNumber, fetch(url).then((response) => {
+        if (!response.ok) throw new Error(`Bundle giallo ${bundleNumber} non disponibile (${response.status})`);
         return response.arrayBuffer();
-      });
+      }));
     }
-    return bundlePromise;
+    return bundlePromises.get(bundleNumber);
   }
 
   function loadYellowVariant(filename) {
-    if (!filename || !BUNDLE_INDEX[filename]) return Promise.resolve(null);
+    const meta = BUNDLE_INDEX[filename];
+    if (!filename || !meta) return Promise.resolve(null);
     const cached = yellowCache.get(filename);
     if (cached instanceof HTMLImageElement) return Promise.resolve(cached);
     if (cached instanceof Promise) return cached;
 
-    const promise = loadBundle()
+    const promise = loadBundle(meta.bundle)
       .then((buffer) => {
-        const { offset, length } = BUNDLE_INDEX[filename];
-        const blob = new Blob([buffer.slice(offset, offset + length)], { type: "image/jpeg" });
+        const blob = new Blob([buffer.slice(meta.offset, meta.offset + meta.length)], { type: "image/jpeg" });
         const objectUrl = URL.createObjectURL(blob);
         return new Promise((resolve) => {
           const image = new Image();
