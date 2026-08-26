@@ -86,6 +86,15 @@ export function getPrematchResourceEntry(assetKey) {
   return [`prematch:${assetKey}`, asset.src];
 }
 
+export function getPrematchBackgroundResourceEntry(backgroundKey) {
+  const asset = ASSETS.prematchBackgrounds[backgroundKey];
+  if (!asset) {
+    return null;
+  }
+
+  return [`prematch-background:${backgroundKey}`, asset.src];
+}
+
 export function getEditorialBackgroundResourceEntry(backgroundKey) {
   const asset = ASSETS.editorialBackgrounds[backgroundKey];
   if (!asset) {
@@ -584,7 +593,7 @@ export function drawPrematchCover(ctx, state, resources) {
   clearCanvas(ctx);
   drawBackgroundImage(
     ctx,
-    resources.get("background:prematch"),
+    resources.get(`prematch-background:${state.background}`) ?? resources.get("background:prematch"),
     FALLBACKS.prematchBackground,
   );
   drawOverlayVignette(ctx);

@@ -8,12 +8,14 @@ import {
   PITCH_DOT_STYLE_OPTIONS,
   PITCH_FORMATION_OPTIONS,
   PREMATCH_ASSET_OPTIONS,
+  PREMATCH_BACKGROUND_OPTIONS,
   TEMPLATES,
 } from "./config.js";
 
 const TEXT_COLOR_OPTIONS = [
   { label: "Giallo", value: "#FFB80C" },
   { label: "Bianco", value: "#FFFFFF" },
+  { label: "Nero", value: "#0D0D0D" },
 ];
 
 function escapeHtml(value) {
@@ -404,6 +406,14 @@ function renderPrematchForm(state) {
           template: "prematch",
           colorPath: "textColors.eventCopy",
           colorValue: state.textColors.eventCopy,
+        })}
+
+        ${renderSelectField({
+          label: "Background Prematch",
+          path: "background",
+          value: state.background,
+          template: "prematch",
+          options: PREMATCH_BACKGROUND_OPTIONS,
         })}
 
         <div class="field-grid">

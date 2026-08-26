@@ -129,6 +129,14 @@ export const FONT_DEFINITIONS = [
 
 const prematchFlatAssets = PREMATCH_ASSET_GROUPS.flatMap((group) => group.options);
 
+export const PREMATCH_BACKGROUND_OPTIONS = [
+  { value: "prematch-official.jpg", label: "Ufficiale", src: "./assets/backgrounds/prematch-official.jpg" },
+  { value: "prematch-giallo.jpg", label: "Giallo", src: "./assets/backgrounds/prematch-giallo.jpg" },
+];
+
+export const PREMATCH_YELLOW_BACKGROUND = "prematch-giallo.jpg";
+export const PREMATCH_YELLOW_TEXT_FIELDS = ["teamA", "teamB", "teamAOdds", "drawOdds", "teamBOdds"];
+
 export const EDITORIAL_BACKGROUND_OPTIONS = [
   { value: "uomo serio.jpg", label: "Uomo Serio", src: "./assets/editorial-backgrounds/uomo serio.jpg" },
   { value: "uomo dubbioso.jpg", label: "Uomo Dubbioso", src: "./assets/editorial-backgrounds/uomo dubbioso.jpg" },
@@ -175,6 +183,9 @@ export const EDITORIAL_BACKGROUND_OPTIONS = [
   { value: "var.jpg", label: "VAR", src: "./assets/editorial-backgrounds/var.jpg" },
 ];
 
+const prematchBackgroundAssets = Object.fromEntries(
+  PREMATCH_BACKGROUND_OPTIONS.map((asset) => [asset.value, asset]),
+);
 const editorialBackgroundAssets = Object.fromEntries(
   EDITORIAL_BACKGROUND_OPTIONS.map((asset) => [asset.value, asset]),
 );
@@ -190,6 +201,7 @@ export const ASSETS = {
   prematchTeamAssets: Object.fromEntries(
     prematchFlatAssets.map((asset) => [asset.value, asset]),
   ),
+  prematchBackgrounds: prematchBackgroundAssets,
   editorialBackgrounds: editorialBackgroundAssets,
   editorialFlags: editorialFlagAssets,
 };
@@ -218,6 +230,7 @@ export const DEFAULT_PREMATCH_STATE = {
   oddsDraw: "3.25",
   oddsB: "2.10",
   eventCopy: "SERIE A | GIORNATA 33 | LUNEDÌ 20 - 20:45",
+  background: "prematch-official.jpg",
   teamAAsset: "with-ball::lecce pallone.png",
   teamBAsset: "without-ball::fiorentina.png",
   textColors: {
