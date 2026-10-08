@@ -19,7 +19,7 @@ import {
   getReadyAssetReport,
   getStaticResourceEntries,
   renderActiveCover,
-} from "./renderers.js?v=20261008a";
+} from "./renderers.js?v=20261008b";
 import { renderLoadingScreen, renderShell } from "./ui.js?v=20261008a";
 
 const app = document.querySelector("#app");

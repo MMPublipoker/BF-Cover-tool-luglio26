@@ -8,6 +8,23 @@
   let currentTheme = "black";
   let redrawTimer = null;
 
+  window.__getEditorialTheme = () => currentTheme;
+
+  function syncLeftGradientVisibility() {
+    const leftGradientInput = document.querySelector('input[data-template="editoriale"][data-path="leftGradient"]');
+    const field = leftGradientInput?.closest(".field");
+    if (field) field.classList.toggle("hidden", currentTheme === "yellow");
+  }
+
+  function syncYellowTextColorForTheme() {
+    if (currentTheme !== "yellow") return;
+    const input = document.querySelector('input[type="color"][data-template="editoriale"][data-path="textColors.yellowText"]');
+    if (input && input.value.toLowerCase() === "#ffb80c") {
+      input.value = "#0d0d0d";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+  }
+
   function getFilenameFromImage(image) {
     if (!(image instanceof HTMLImageElement) || !image.src.includes(EDITORIAL_ASSET_PATH)) return "";
     try {
@@ -99,6 +116,8 @@
 
     field.querySelector("[data-editorial-theme-select]").addEventListener("change", async (event) => {
       currentTheme = event.target.value in THEMES ? event.target.value : "black";
+      syncLeftGradientVisibility();
+      syncYellowTextColorForTheme();
       if (currentTheme === "yellow") await prepareCurrentYellowAsset();
       else requestEditorialRedraw();
     });
@@ -133,7 +152,11 @@
     }
   }, true);
 
-  const observer = new MutationObserver(injectThemeControl);
+  const observer = new MutationObserver(() => {
+    injectThemeControl();
+    syncLeftGradientVisibility();
+  });
   observer.observe(document.documentElement, { childList: true, subtree: true });
   injectThemeControl();
+  syncLeftGradientVisibility();
 })();

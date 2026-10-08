@@ -659,7 +659,11 @@ function drawEditorialGradient(ctx, amount) {
   ctx.fillRect(0, 0, COVER_WIDTH, COVER_HEIGHT);
 }
 
-function drawEditorialFlag(ctx, state, image) {
+function isEditorialYellowTheme() {
+  return typeof window !== "undefined" && window.__getEditorialTheme?.() === "yellow";
+}
+
+function drawEditorialFlag(ctx, state, image, clean) {
   if (!image) {
     return;
   }
@@ -689,8 +693,10 @@ function drawEditorialFlag(ctx, state, image) {
   const drawY = baseBox.y + (baseBox.height - drawHeight) / 2 + (state.flagOffsetY ?? 0);
 
   ctx.save();
-  ctx.shadowBlur = 22;
-  ctx.shadowColor = "rgba(0, 0, 0, 0.30)";
+  if (!clean) {
+    ctx.shadowBlur = 22;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.30)";
+  }
   ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight);
   ctx.restore();
 }
@@ -772,7 +778,7 @@ function getContainLayout(image, box) {
   };
 }
 
-function drawEditorialPitch(ctx, state, image) {
+function drawEditorialPitch(ctx, state, image, clean) {
   const baseBox = {
     x: 592,
     y: 94,
@@ -836,8 +842,8 @@ function drawEditorialPitch(ctx, state, image) {
       align: "center",
       baseline: "bottom",
       letterSpacing: 0.4,
-      shadowBlur: 8,
-      shadowColor: "rgba(0, 0, 0, 0.28)",
+      shadowBlur: clean ? 0 : 8,
+      shadowColor: clean ? "transparent" : "rgba(0, 0, 0, 0.28)",
     });
   });
 
@@ -845,6 +851,8 @@ function drawEditorialPitch(ctx, state, image) {
 }
 
 export function drawEditorialCover(ctx, state, resources) {
+  const isYellowTheme = isEditorialYellowTheme();
+
   clearCanvas(ctx);
   drawBackgroundImage(
     ctx,
@@ -852,14 +860,17 @@ export function drawEditorialCover(ctx, state, resources) {
       resources.get("background:editoriale"),
     FALLBACKS.editorialBackground,
   );
-  drawOverlayVignette(ctx);
-  drawEditorialGradient(ctx, state.leftGradient);
+
+  if (!isYellowTheme) {
+    drawOverlayVignette(ctx);
+    drawEditorialGradient(ctx, state.leftGradient);
+  }
 
   if (state.background === "chiamata vuota.jpg") {
     if (state.chiamataVuotaMode === "pitch") {
-      drawEditorialPitch(ctx, state, resources.get("editorial-pitch"));
+      drawEditorialPitch(ctx, state, resources.get("editorial-pitch"), isYellowTheme);
     } else if (state.flagAsset) {
-      drawEditorialFlag(ctx, state, resources.get(`editorial-flag:${state.flagAsset}`));
+      drawEditorialFlag(ctx, state, resources.get(`editorial-flag:${state.flagAsset}`), isYellowTheme);
     }
   }
 
@@ -880,8 +891,8 @@ export function drawEditorialCover(ctx, state, resources) {
   drawLines(ctx, whiteLines, textX, whiteStartY, whiteLineHeight, {
     color: state.textColors.whiteText,
     letterSpacing: 1.4,
-    shadowBlur: 16,
-    shadowColor: "rgba(0, 0, 0, 0.34)",
+    shadowBlur: isYellowTheme ? 0 : 16,
+    shadowColor: isYellowTheme ? "transparent" : "rgba(0, 0, 0, 0.34)",
   });
 
   ctx.font = `900 ${yellowSize}px "Betfair Condensed Black"`;
@@ -892,8 +903,8 @@ export function drawEditorialCover(ctx, state, resources) {
   drawLines(ctx, yellowLines, textX, yellowStartY, yellowLineHeight, {
     color: state.textColors.yellowText,
     letterSpacing: 1.8,
-    shadowBlur: 18,
-    shadowColor: "rgba(0, 0, 0, 0.36)",
+    shadowBlur: isYellowTheme ? 0 : 18,
+    shadowColor: isYellowTheme ? "transparent" : "rgba(0, 0, 0, 0.36)",
   });
 }
 
