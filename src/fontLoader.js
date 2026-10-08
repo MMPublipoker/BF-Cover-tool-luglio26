@@ -1,4 +1,4 @@
-import { FONT_DEFINITIONS } from "./config.js?v=20261008a";
+import { FONT_DEFINITIONS } from "./config.js?v=20261008c";
 
 export async function loadFonts() {
   const fontPromises = FONT_DEFINITIONS.map(async (definition) => {

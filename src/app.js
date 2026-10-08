@@ -1,12 +1,10 @@
 import {
   ASSETS,
-  BRAND,
   createInitialState,
   getPitchPlayersTemplate,
   PITCH_FORMATION_DEFAULT_PLAYERS,
-  PREMATCH_YELLOW_BACKGROUND,
-  PREMATCH_YELLOW_TEXT_FIELDS,
-} from "./config.js?v=20261008a";
+  PREMATCH_TEXT_PRESETS,
+} from "./config.js?v=20261008c";
 import { loadFonts } from "./fontLoader.js?v=20261008a";
 import {
   ensureResources,
@@ -19,7 +17,7 @@ import {
   getReadyAssetReport,
   getStaticResourceEntries,
   renderActiveCover,
-} from "./renderers.js?v=20261008b";
+} from "./renderers.js?v=20261008c";
 import { renderLoadingScreen, renderShell } from "./ui.js?v=20261008a";
 
 const app = document.querySelector("#app");
@@ -497,12 +495,11 @@ async function handleInput(event) {
     }
   }
 
-  if (template === "prematch" && path === "background" && templateState.background === PREMATCH_YELLOW_BACKGROUND) {
-    PREMATCH_YELLOW_TEXT_FIELDS.forEach((field) => {
-      if (templateState.textColors[field] === BRAND.yellow) {
-        templateState.textColors[field] = BRAND.black;
-      }
-    });
+  if (template === "prematch" && path === "background") {
+    const preset = PREMATCH_TEXT_PRESETS[templateState.background];
+    if (preset) {
+      Object.assign(templateState.textColors, preset);
+    }
   }
 
   refreshRangeValue(target);

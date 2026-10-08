@@ -135,7 +135,31 @@ export const PREMATCH_BACKGROUND_OPTIONS = [
 ];
 
 export const PREMATCH_YELLOW_BACKGROUND = "prematch-giallo.jpg";
-export const PREMATCH_YELLOW_TEXT_FIELDS = ["teamA", "teamB", "teamAOdds", "drawOdds", "teamBOdds"];
+
+export const PREMATCH_TEXT_PRESETS = {
+  "prematch-official.jpg": {
+    teamA: "#FFB80C",
+    centerX: "#FFFFFF",
+    teamB: "#FFB80C",
+    competitionA: "#FFFFFF",
+    competitionB: "#FFFFFF",
+    teamAOdds: "#FFB80C",
+    drawOdds: "#FFB80C",
+    teamBOdds: "#FFB80C",
+    eventCopy: "#FFFFFF",
+  },
+  "prematch-giallo.jpg": {
+    teamA: "#0D0D0D",
+    centerX: "#0D0D0D",
+    teamB: "#0D0D0D",
+    competitionA: "#0D0D0D",
+    competitionB: "#0D0D0D",
+    teamAOdds: "#FFFFFF",
+    drawOdds: "#FFFFFF",
+    teamBOdds: "#FFFFFF",
+    eventCopy: "#0D0D0D",
+  },
+};
 
 export const EDITORIAL_BACKGROUND_OPTIONS = [
   { value: "uomo serio.jpg", label: "Uomo Serio", src: "./assets/editorial-backgrounds/uomo serio.jpg" },
@@ -230,19 +254,19 @@ export const DEFAULT_PREMATCH_STATE = {
   oddsDraw: "3.25",
   oddsB: "2.10",
   eventCopy: "SERIE A | GIORNATA 33 | LUNEDÌ 20 - 20:45",
-  background: "prematch-official.jpg",
+  background: "prematch-giallo.jpg",
   teamAAsset: "with-ball::lecce pallone.png",
   teamBAsset: "without-ball::fiorentina.png",
   textColors: {
-    teamA: "#FFB80C",
-    centerX: "#FFFFFF",
-    teamB: "#FFB80C",
-    competitionA: "#FFFFFF",
-    competitionB: "#FFFFFF",
-    teamAOdds: "#FFB80C",
-    drawOdds: "#FFB80C",
-    teamBOdds: "#FFB80C",
-    eventCopy: "#FFFFFF",
+    teamA: "#0D0D0D",
+    centerX: "#0D0D0D",
+    teamB: "#0D0D0D",
+    competitionA: "#0D0D0D",
+    competitionB: "#0D0D0D",
+    teamAOdds: "#FFFFFF",
+    drawOdds: "#FFFFFF",
+    teamBOdds: "#FFFFFF",
+    eventCopy: "#0D0D0D",
   },
   transforms: {
     teamA: {

@@ -10,7 +10,7 @@ import {
   PREMATCH_ASSET_OPTIONS,
   PREMATCH_BACKGROUND_OPTIONS,
   TEMPLATES,
-} from "./config.js?v=20261008a";
+} from "./config.js?v=20261008c";
 
 const TEXT_COLOR_OPTIONS = [
   { label: "Giallo", value: "#FFB80C" },

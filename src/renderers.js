@@ -1,4 +1,4 @@
-import { ASSETS, COVER_HEIGHT, COVER_WIDTH, FALLBACKS, getPitchPlayersTemplate, PREMATCH_YELLOW_BACKGROUND } from "./config.js?v=20261008a";
+import { ASSETS, COVER_HEIGHT, COVER_WIDTH, FALLBACKS, getPitchPlayersTemplate, PREMATCH_YELLOW_BACKGROUND } from "./config.js?v=20261008c";
 
 const PITCH_FORMATION_LAYOUTS = {
   "4-3-3": [
@@ -631,12 +631,12 @@ export function drawPrematchCover(ctx, state, resources) {
     maxSize: 20,
     family: "Betfair Light",
     weight: 300,
-    letterSpacing: 1.9,
+    letterSpacing: 0.2,
   });
   ctx.font = `300 ${eventCopySize}px "Betfair Light"`;
   drawTrackedText(ctx, state.eventCopy.toUpperCase(), 600, 290, {
     color: state.textColors.eventCopy,
-    letterSpacing: 1.9,
+    letterSpacing: 0.2,
     align: "center",
     shadowBlur: isCleanYellow ? 0 : 12,
     shadowColor: isCleanYellow ? "transparent" : "rgba(0, 0, 0, 0.32)",
