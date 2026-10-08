@@ -1,4 +1,4 @@
-import { ASSETS, COVER_HEIGHT, COVER_WIDTH, FALLBACKS, getPitchPlayersTemplate } from "./config.js";
+import { ASSETS, COVER_HEIGHT, COVER_WIDTH, FALLBACKS, getPitchPlayersTemplate, PREMATCH_YELLOW_BACKGROUND } from "./config.js";
 
 const PITCH_FORMATION_LAYOUTS = {
   "4-3-3": [
@@ -469,7 +469,7 @@ function fitPrematchTeamNameSize(ctx, lines, options) {
   return minSize;
 }
 
-function drawPrematchTeamNames(ctx, state) {
+function drawPrematchTeamNames(ctx, state, clean) {
   const block = {
     x: COVER_WIDTH * 0.3,
     y: COVER_HEIGHT * 0.17,
@@ -534,14 +534,14 @@ function drawPrematchTeamNames(ctx, state) {
       align: "center",
       baseline: "middle",
       letterSpacing,
-      shadowBlur: 14,
-      shadowColor: "rgba(0, 0, 0, 0.38)",
-      strokeWidth: 1.1,
+      shadowBlur: clean ? 0 : 14,
+      shadowColor: clean ? "transparent" : "rgba(0, 0, 0, 0.38)",
+      strokeWidth: clean ? 0 : 1.1,
     });
   });
 }
 
-function drawPrematchOddsBlock(ctx, state) {
+function drawPrematchOddsBlock(ctx, state, clean) {
   const competitionY = 396;
   const oddsY = 456;
   const columns = [
@@ -574,8 +574,8 @@ function drawPrematchOddsBlock(ctx, state) {
       color: column.siglaColor,
       align: "center",
       letterSpacing: 1.5,
-      shadowBlur: 10,
-      shadowColor: "rgba(0, 0, 0, 0.28)",
+      shadowBlur: clean ? 0 : 10,
+      shadowColor: clean ? "transparent" : "rgba(0, 0, 0, 0.28)",
     });
 
     ctx.font = `900 54px "Betfair Condensed Black"`;
@@ -583,22 +583,27 @@ function drawPrematchOddsBlock(ctx, state) {
       color: column.oddColor,
       align: "center",
       letterSpacing: 0.35,
-      shadowBlur: 10,
-      shadowColor: "rgba(0, 0, 0, 0.28)",
+      shadowBlur: clean ? 0 : 10,
+      shadowColor: clean ? "transparent" : "rgba(0, 0, 0, 0.28)",
     });
   });
 }
 
 export function drawPrematchCover(ctx, state, resources) {
+  const isCleanYellow = state.background === PREMATCH_YELLOW_BACKGROUND;
+
   clearCanvas(ctx);
   drawBackgroundImage(
     ctx,
     resources.get(`prematch-background:${state.background}`) ?? resources.get("background:prematch"),
     FALLBACKS.prematchBackground,
   );
-  drawOverlayVignette(ctx);
-  drawCenterGlow(ctx);
-  drawBottomFade(ctx);
+
+  if (!isCleanYellow) {
+    drawOverlayVignette(ctx);
+    drawCenterGlow(ctx);
+    drawBottomFade(ctx);
+  }
 
   drawPrematchSubject(
     ctx,
@@ -614,7 +619,7 @@ export function drawPrematchCover(ctx, state, resources) {
     state.transforms.teamB,
     ASSETS.prematchTeamAssets[state.teamBAsset],
   );
-  drawPrematchTeamNames(ctx, state);
+  drawPrematchTeamNames(ctx, state, isCleanYellow);
 
   const eventCopySize = fitFontSize(ctx, state.eventCopy.toUpperCase(), {
     maxWidth: 640,
@@ -629,11 +634,11 @@ export function drawPrematchCover(ctx, state, resources) {
     color: state.textColors.eventCopy,
     letterSpacing: 1.9,
     align: "center",
-    shadowBlur: 12,
-    shadowColor: "rgba(0, 0, 0, 0.32)",
+    shadowBlur: isCleanYellow ? 0 : 12,
+    shadowColor: isCleanYellow ? "transparent" : "rgba(0, 0, 0, 0.32)",
   });
 
-  drawPrematchOddsBlock(ctx, state);
+  drawPrematchOddsBlock(ctx, state, isCleanYellow);
 }
 
 function drawEditorialGradient(ctx, amount) {
