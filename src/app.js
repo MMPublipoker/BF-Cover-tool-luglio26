@@ -1,17 +1,26 @@
-import { ASSETS, createInitialState, getPitchPlayersTemplate, PITCH_FORMATION_DEFAULT_PLAYERS } from "./config.js";
-import { loadFonts } from "./fontLoader.js";
+import {
+  ASSETS,
+  BRAND,
+  createInitialState,
+  getPitchPlayersTemplate,
+  PITCH_FORMATION_DEFAULT_PLAYERS,
+  PREMATCH_YELLOW_BACKGROUND,
+  PREMATCH_YELLOW_TEXT_FIELDS,
+} from "./config.js?v=20261008a";
+import { loadFonts } from "./fontLoader.js?v=20261008a";
 import {
   ensureResources,
   exportCanvasAsJpeg,
   getEditorialBackgroundResourceEntry,
   getEditorialFlagResourceEntry,
+  getPrematchBackgroundResourceEntry,
   getPrematchSubjectLayout,
   getPrematchResourceEntry,
   getReadyAssetReport,
   getStaticResourceEntries,
   renderActiveCover,
-} from "./renderers.js";
-import { renderLoadingScreen, renderShell } from "./ui.js";
+} from "./renderers.js?v=20261008a";
+import { renderLoadingScreen, renderShell } from "./ui.js?v=20261008a";
 
 const app = document.querySelector("#app");
 const state = createInitialState();
@@ -204,6 +213,10 @@ async function syncResourcesForCurrentState() {
   const entries = [...getStaticResourceEntries()];
 
   if (state.activeTemplate === "prematch") {
+    const backgroundEntry = getPrematchBackgroundResourceEntry(state.prematch.background);
+    if (backgroundEntry) {
+      entries.push(backgroundEntry);
+    }
     const teamAEntry = getPrematchResourceEntry(state.prematch.teamAAsset);
     const teamBEntry = getPrematchResourceEntry(state.prematch.teamBAsset);
     if (teamAEntry) {
@@ -484,11 +497,22 @@ async function handleInput(event) {
     }
   }
 
+  if (template === "prematch" && path === "background" && templateState.background === PREMATCH_YELLOW_BACKGROUND) {
+    PREMATCH_YELLOW_TEXT_FIELDS.forEach((field) => {
+      if (templateState.textColors[field] === BRAND.yellow) {
+        templateState.textColors[field] = BRAND.black;
+      }
+    });
+  }
+
   refreshRangeValue(target);
   refreshColorCode(target);
   await syncResourcesForCurrentState();
 
-  if (template === "editoriale" && (path === "background" || path === "chiamataVuotaMode" || path === "pitchFormation")) {
+  if (
+    (template === "editoriale" && (path === "background" || path === "chiamataVuotaMode" || path === "pitchFormation")) ||
+    (template === "prematch" && path === "background")
+  ) {
     mountShell();
     return;
   }
