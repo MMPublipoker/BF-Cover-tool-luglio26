@@ -1,4 +1,4 @@
-import { ASSETS, COVER_HEIGHT, COVER_WIDTH, FALLBACKS, getPitchPlayersTemplate, PREMATCH_YELLOW_BACKGROUND } from "./config.js";
+import { ASSETS, COVER_HEIGHT, COVER_WIDTH, FALLBACKS, getPitchPlayersTemplate, PREMATCH_YELLOW_BACKGROUND } from "./config.js?v=20261008a";
 
 const PITCH_FORMATION_LAYOUTS = {
   "4-3-3": [
@@ -371,7 +371,7 @@ export function getPrematchSubjectLayout(side, transform, assetMeta, image) {
   };
 }
 
-function drawPrematchSubject(ctx, image, side, transform, assetMeta) {
+function drawPrematchSubject(ctx, image, side, transform, assetMeta, clean) {
   if (!image) {
     return;
   }
@@ -379,8 +379,10 @@ function drawPrematchSubject(ctx, image, side, transform, assetMeta) {
   const layout = getPrematchSubjectLayout(side, transform, assetMeta, image);
 
   ctx.save();
-  ctx.shadowBlur = 34;
-  ctx.shadowColor = "rgba(0, 0, 0, 0.38)";
+  if (!clean) {
+    ctx.shadowBlur = 34;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.38)";
+  }
   ctx.drawImage(image, layout.x, layout.y, layout.width, layout.height);
   ctx.restore();
 }
@@ -611,6 +613,7 @@ export function drawPrematchCover(ctx, state, resources) {
     "left",
     state.transforms.teamA,
     ASSETS.prematchTeamAssets[state.teamAAsset],
+    isCleanYellow,
   );
   drawPrematchSubject(
     ctx,
@@ -618,6 +621,7 @@ export function drawPrematchCover(ctx, state, resources) {
     "right",
     state.transforms.teamB,
     ASSETS.prematchTeamAssets[state.teamBAsset],
+    isCleanYellow,
   );
   drawPrematchTeamNames(ctx, state, isCleanYellow);
 

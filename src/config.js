@@ -1,5 +1,5 @@
-import { EDITORIAL_FLAG_OPTIONS } from "./editorialFlags.generated.js";
-import { PREMATCH_ASSET_GROUPS } from "./prematchAssets.generated.js";
+import { EDITORIAL_FLAG_OPTIONS } from "./editorialFlags.generated.js?v=20261008a";
+import { PREMATCH_ASSET_GROUPS } from "./prematchAssets.generated.js?v=20261008a";
 
 export const COVER_WIDTH = 1200;
 export const COVER_HEIGHT = 676;

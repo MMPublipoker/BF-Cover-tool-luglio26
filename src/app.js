@@ -6,8 +6,8 @@ import {
   PITCH_FORMATION_DEFAULT_PLAYERS,
   PREMATCH_YELLOW_BACKGROUND,
   PREMATCH_YELLOW_TEXT_FIELDS,
-} from "./config.js";
-import { loadFonts } from "./fontLoader.js";
+} from "./config.js?v=20261008a";
+import { loadFonts } from "./fontLoader.js?v=20261008a";
 import {
   ensureResources,
   exportCanvasAsJpeg,
@@ -19,8 +19,8 @@ import {
   getReadyAssetReport,
   getStaticResourceEntries,
   renderActiveCover,
-} from "./renderers.js";
-import { renderLoadingScreen, renderShell } from "./ui.js";
+} from "./renderers.js?v=20261008a";
+import { renderLoadingScreen, renderShell } from "./ui.js?v=20261008a";
 
 const app = document.querySelector("#app");
 const state = createInitialState();
